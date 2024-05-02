@@ -236,6 +236,12 @@
         "on-click": "keybinds_hint.sh"
     },
 
+    "hyprland/language": {
+        "format": "{short} {variant}",
+        "rotate": 0,
+        "on-click": "keyboardswitch.sh",
+    },
+
     "tray": {
         "icon-size": 16,
         "rotate": 0,
@@ -254,12 +260,6 @@
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-
-    "hyprland/language": {
-        "format": "{short} {variant}",
-        "rotate": 0,
-        "on-click": "keyboardswitch.sh",
     },
 
     "custom/wallchange": {

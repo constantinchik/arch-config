@@ -33,7 +33,7 @@ mainbox {
 // Lists //
 listview {
     enabled:                     true;
-    columns:                     10;
+    columns:                     8;
     lines:                       1;
     spacing:                     30px;
     padding:                     40px 100px 40px 100px;
@@ -42,7 +42,7 @@ listview {
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     true;
-    fixed-height:                true;
+    fixed-height:                false;
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
