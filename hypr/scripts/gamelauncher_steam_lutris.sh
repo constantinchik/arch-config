@@ -31,52 +31,41 @@ prepare_steam_games() {
     done | sort
 }
 
+# Function to fetch Lutris games
 prepare_lutris_games() {
     meta_data="/tmp/hyprdots-$(id -u)-lutrisgames.json"
 
-    eval "${run_lutris}" -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + "\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
+    eval "${run_lutris}" -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + " (Lutris)\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
     jq -r '.[].select' "${meta_data}"
 }
 
-# Unified launcher
+# Combined function to launch Rofi with games from both sources
 launch_games() {
-    steam_games=$(prepare_steam_games)
-    lutris_games=$(prepare_lutris_games)
-
-    # Ensure both lists are properly newline-separated and combined
-    all_games=$(echo -e "$(prepare_steam_games)\n$(prepare_lutris_games)")
-    print $all_games
-
-    # Launch Rofi with formatted entries
-    choice=$({
+    RofiSel=$({
         prepare_steam_games
         prepare_lutris_games
     } | rofi -dmenu -p "Games" -theme-str "$r_override" -config $RofiConf)
-
-    # Parse the choice for launch details
-    game_name=$(echo "$choice" | cut -d $'\x00' -f 1)
-    game_type=$(echo "$choice" | grep -oE 'steam|lutris')
-    icon_path=$(echo "$choice" | grep -oP '(?<=icon\x1f).*(?=.jpg)' | sed 's/\.jpg//')
-
-    case $game_type in
-        steam)
-            launchid=$(echo "$icon_path" | awk -F'/' '{print $NF}')  # Extract appid from path
-            notify-send "Launching $game_name..."
-            steam -applaunch $launchid &
-            ;;
-        lutris)
-            slug=$(echo "$icon_path" | awk -F'/' '{print $NF}')
-            notify-send "Launching $game_name..."
+    
+    if [ -n "$RofiSel" ]; then
+        if [[ "$RofiSel" == *"/(Steam)/"* ]]; then
+            appid=$(basename "${icon_path%_library_600x900.jpg}")
+            notify-send -a "t1" -i "${icon_path}" "Launching ${RofiSel}..."
+            steam -applaunch $appid &
+        elif [[ "$RofiSel" == *"(Lutris)"* ]]; then
+            slug=$(basename "${icon_path%.jpg}")
+            notify-send -a "t1" -i "${icon_path}" "Launching ${RofiSel}..."
             xdg-open "lutris:rungame/$slug"
-            ;;
-    esac
+        else
+            echo "Error determining game source."
+        fi
+    fi
 }
 
-# Detect if flatpak or native versions of Lutris are installed
+# Determine if flatpak or native versions of Lutris are installed
 run_lutris=""
 ( flatpak list --columns=application | grep -q "net.lutris.Lutris" ) && run_lutris="flatpak run net.lutris.Lutris" ; icon_path="${HOME}/.var/app/net.lutris.Lutris/data/lutris/coverart/"
 [ -z "$run_lutris" ] && ( command -v lutris > /dev/null ) && run_lutris="lutris"
 
-# Execute the launcher
+# Execute the game launcher
 launch_games
 
