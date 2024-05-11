@@ -10,7 +10,7 @@
         "format-m": "󰾅 {used}GB",
         "format-h": "󰓅 {used}GB",
         "format-c": " {used}GB",
-        "format-alt": "󰾆 {percentage}%",
+        // "format-alt": "󰾆 {percentage}%",
         "max-length": 10,
         "tooltip": true,
         "tooltip-format": "󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB"
