@@ -13,6 +13,14 @@ cleaned later.
 
 - Copy those files over the ones that are currently located in your .config
 
+## Additional steps:
+
+- Install btop++
+
+- Install plugins
+
+- To have websites in chrome-based browsers use the catppuccin theme follow [this guide](https://github.com/catppuccin/userstyles)
+
 # Other links
 
 - HyprV4 (Or HyprV2): [Follow the instructions](https://github.com/SolDoesTech/HyprV4)
