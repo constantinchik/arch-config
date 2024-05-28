@@ -20,23 +20,35 @@ generated after all the steps of installation are completed.
   configuration to replace the default (or hyprdots) ones.
 - Install the hyprland extensions by running the following commands:
   ```bash
-    sudo pacman -S cpio meson cmake hyprwayland-scanner
-    hyprpm update
-    hyprpm add https://github.com/hyprwm/hyprland-plugins
-    hyprpm add https://github.com/DreamMaoMao/hycov
-    hyprpm enable hycov
-    hyprpm enable hyprexpo
+  sudo pacman -S cpio meson cmake hyprwayland-scanner
+  hyprpm update
+  hyprpm add https://github.com/hyprwm/hyprland-plugins
+  hyprpm add https://github.com/DreamMaoMao/hycov
+  hyprpm enable hycov
+  hyprpm enable hyprexpo
   ```
 - Afetr this you should have all the required packages installed, go to the root
   of this repository and run
   ```bash
-  stow . -t ~
+  stow . -t ~/.config --adopt
   ```
   to override the default configuration of hyprdots with this custom one.
+- Customize grub to your liking. To install the [tela theme](https://github.com/vinceliuice/grub2-themes)
+  run the following commands:
+  ```bash
+  cd /tmp
+  git clone https://github.com/vinceliuice/grub2-themes.git
+  cd grub2-themes
+  sudo ./install.sh -t tela -s 2k
+  ```
+- Customize sddm to your liking. This repo provides a tweaked Corners theme. To install it run:
+  ```bash
+  sudo tar -xzvf ./assets/sddm-corners-tweaked.tar.gz -C /usr/share/sddm/themes
+  ```
+  Then make sure that your sddm is configured to use Corners theme
 
 ## Additional steps:
 
-- Install plugins
 - To have websites in chrome-based browsers use the catppuccin theme follow [this guide](https://github.com/catppuccin/userstyles)
 
 # Other dotfiles config for Hyprland to consider for future:

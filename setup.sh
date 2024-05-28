@@ -46,8 +46,21 @@ fi
 # Override default config of hyprdots with this custom one from this repo
 cd $SCRIPT_DIR
 stow . -t ~/.config --adopt
+# Remove overrides
+git checkout .
+stow . -t ~/.config --adopt
 
+# Install grub theme
+cd /tmp
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+sudo ./install.sh -b -t tela -s 2k
+
+# Install better sddm theme
+cd $SCRIPT_DIR
+sudo tar -xzvf ./assets/sddm-corners-tweaked.tar.gz -C /usr/share/sddm/themes
 
 # Install other:
 # Lutris
 flatpak install flathub net.lutris.Lutris
+pacman -S chromium
