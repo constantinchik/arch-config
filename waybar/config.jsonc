@@ -120,7 +120,7 @@
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000,
-        "on-click": "kitty btop",
+        "on-click": "/home/cost/.local/share/bin/sysmonlaunch.sh",
     },
 
     "custom/gpuinfo": {

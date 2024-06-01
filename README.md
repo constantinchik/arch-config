@@ -50,7 +50,12 @@ generated after all the steps of installation are completed.
 ## Additional steps:
 
 - To have websites in chrome-based browsers use the catppuccin theme follow [this guide](https://github.com/catppuccin/userstyles)
+- Follow [this guide](https://wiki.hyprland.org/Nvidia/) to update your configuration for NVidia
 
 # Other dotfiles config for Hyprland to consider for future:
 
 - [HyprV4](https://github.com/SolDoesTech/HyprV4)
+
+# TODOs:
+
+- Game launcher
