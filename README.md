@@ -56,6 +56,14 @@ generated after all the steps of installation are completed.
 
 - [HyprV4](https://github.com/SolDoesTech/HyprV4)
 
+# Performance.
+
+To increase Performance and decrease battery usage - use hotkey `CMD+Alt+G` to
+disable all animations, background blur and other heavy-GPU settings.
+
+Note: `borderangle` is the property that uses GPU a lot. In this config this
+property was disabled
+
 # TODOs:
 
 - Game launcher
