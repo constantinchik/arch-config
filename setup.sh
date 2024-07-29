@@ -43,12 +43,16 @@ else
     ./scripts/setup.sh
 fi
 
+# Copy additional custom scripts
+cp -a ${SCRIPT_DIR}/assets/bin/. ${HOME}/.local/share/bin
+
 # Override default config of hyprdots with this custom one from this repo
 cd $SCRIPT_DIR
 stow . -t ~/.config --adopt
 # Remove overrides
 git checkout .
 stow . -t ~/.config --adopt
+
 
 # Install grub theme
 cd /tmp
