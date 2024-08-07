@@ -68,3 +68,6 @@ sudo tar -xzvf ./assets/sddm-corners-tweaked.tar.gz -C /usr/share/sddm/themes
 # Lutris
 flatpak install flathub net.lutris.Lutris
 pacman -S chromium
+
+# Monitors
+echo "The monitor configuration is not applied by default. To apply changes simply press SUPER-M and select a preset."
