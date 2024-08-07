@@ -1,0 +1,12 @@
+    "custom/dualsenseinfo": {
+        "exec": " dualsenseinfo.sh",
+        "return-type": "json",
+        "format": "{}",
+        "rotate": ${r_deg},
+        "restart-interval": 5,
+        "tooltip": true,
+        "max-length": 6,
+        "on-click": "dualsensectl power off",
+    },
+
+
