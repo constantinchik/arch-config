@@ -71,3 +71,8 @@ pacman -S chromium
 
 # Monitors
 echo "The monitor configuration is not applied by default. To apply changes simply press SUPER-M and select a preset."
+
+
+# For hyrplock new background:
+ln /home/cost/.config/hyde/themes/Catppuccin\ Mocha/wallpapers/escape_velocity.jpg ~/.config/background -sfn
+ln ${SCRIPT_DIR}/.face ~/.face -sfn

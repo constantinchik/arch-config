@@ -25,3 +25,6 @@ _darcs
 scripts
 setup.sh
 assets
+
+# ignore face as it should be in ~/ not ~/.config/
+.face
