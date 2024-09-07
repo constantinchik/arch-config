@@ -5,7 +5,7 @@
         "rotate": ${r_deg},
         "restart-interval": 5,
         "tooltip": true,
-        "max-length": 6,
+        "max-length": 7,
         "on-click": "dualsensectl power off",
     },
 

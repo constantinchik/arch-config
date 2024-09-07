@@ -4,21 +4,24 @@ echo "Before running this script make sure that you have an SSH key in github, s
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Install hyprland
-sudo pacman -S hyprland
+# sudo pacman -S hyprland
 
 # Install hyprdots
-pacman -Sy git
-if [ ! -d "~/projects/hyprdots" ]; then
-    mkdir ~/projects
-    cd ~/projects/
+sudo pacman -S git
+
+if [ ! -d "${HOME}/projects" ]; then
+    mkdir ${HOME}/projects
+fi
+
+if [ ! -d "${HOME}/projects/hyprdots" ]; then
+    cd ${HOME}/projects
     git clone --depth 1 https://github.com/prasanthrangan/hyprdots
-    cd /hyprdots/Scripts
-    ./install.sh custom_apps.lst
+    ${HOME}/projects/hyprdots/Scripts/install.sh ${HOME}/projects/hyprdots/Scripts/custom_apps.lst
 else
-    cd ~/projects/hyprdots
+    cd ${HOME}/projects/hyprdots
     git fetch
     git pull
-    ./install.sh -r
+    ${HOME}/projects/hyprdots/Scripts/install.sh ${HOME}/projects/hyprdots/Scripts/custom_apps.lst -r
 fi
 
 # Install hyprland extensions
@@ -31,16 +34,15 @@ hyprpm enable hyprexpo
 hyprpm reload
 
 # Copy dotfiles
-if [ ! -d "~/projects/dotfiles" ]; then
-    cd ~/projects/
+if [ ! -d "${HOME}/projects/dotfiles" ]; then
+    cd ${HOME}/projects/
     git clone --recurse-submodules git@github.com:constantinchik/dotfiles.git
-    cd dotfiles/
-    ./scripts/setup.sh
+    ${HOME}/projects/dotfiles/scripts/setup.sh
 else
-    cd ~/projects/dotfiles
+    cd ${HOME}/projects/dotfiles
     git fetch
     git pull
-    ./scripts/setup.sh
+    ${HOME}/projects/dotfiles/scripts/setup.sh
 fi
 
 # Copy additional custom scripts
@@ -50,6 +52,7 @@ cp -a ${SCRIPT_DIR}/assets/bin/. ${HOME}/.local/share/bin
 cd $SCRIPT_DIR
 stow . -t ~/.config --adopt
 # Remove overrides
+cd $SCRIPT_DIR
 git checkout .
 stow . -t ~/.config --adopt
 
@@ -57,8 +60,7 @@ stow . -t ~/.config --adopt
 # Install grub theme
 cd /tmp
 git clone https://github.com/vinceliuice/grub2-themes.git
-cd grub2-themes
-sudo ./install.sh -b -t tela -s 2k
+sudo /tmp/grub2-themes/install.sh -b -t tela -s 2k
 
 # Install better sddm theme
 cd $SCRIPT_DIR
@@ -67,7 +69,7 @@ sudo tar -xzvf ./assets/sddm-corners-tweaked.tar.gz -C /usr/share/sddm/themes
 # Install other:
 # Lutris
 flatpak install flathub net.lutris.Lutris
-pacman -S chromium
+yay -S zen-browser-bin
 
 # Monitors
 echo "The monitor configuration is not applied by default. To apply changes simply press SUPER-M and select a preset."

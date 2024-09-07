@@ -22,7 +22,7 @@ elif [ "$perc" -le 100 ]; then
 fi
 
 echo $icon
-echo "{\"text\":\"${icon}${perc}%\", \"tooltip\":\"Dualsense controller\"}"
+echo "{\"text\":\"${icon} ${perc}%\", \"tooltip\":\"Dualsense controller\"}"
 
 # case $state in
 #   *charging*)
