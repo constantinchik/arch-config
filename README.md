@@ -67,3 +67,6 @@ property was disabled
 # TODOs:
 
 - Game launcher
+- Default params in dotfiles
+- No reboot after installing dotfiles
+- Fix cloning dotfiles without github account
