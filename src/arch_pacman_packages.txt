@@ -1,0 +1,8 @@
+hyprland
+git
+chromium
+cpio
+meson
+cmake
+hyprwayland-scanner
+flatpak
